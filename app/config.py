@@ -1,8 +1,5 @@
-from distutils.log import debug
-
-
 class Config:
-    pass
+   pass
 
 class ProdConfig(Config):
     pass
