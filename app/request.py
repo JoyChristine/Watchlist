@@ -30,6 +30,45 @@ def get_movies(category):
 
     return movie_results
 
+def get_movie(id):
+    get_movie_details_url = api_base_url.format(id,api_key)
+
+    with urllib.request.urlopen(get_movie_details_url) as url:
+        movie_details_data = url.read()
+        movie_details_response = json.loads(movie_details_data)
+
+        movie_object = None
+        if movie_details_response:
+            id = movie_details_response.get('id')
+            title = movie_details_response.get('original_title')
+            overview = movie_details_response.get('overview')
+            poster = movie_details_response.get('poster_path')
+        
+
+            movie_object = Movie(id,title,overview,poster)
+
+            return movie_object
+
+# implement a search functioanlity
+def search_movie(movie_name):
+    """
+    Function that searches for a movie by name by 
+    Use the .format method on the URL to pass in the api_key & movie name
+    """
+    search_movie_url = 'https://api.themoviedb.org/3/search/movie?api_key={}&query={}'.format(api_key,movie_name)
+    with urllib.request.urlopen(search_movie_url) as url:
+        search_movie_data = url.read()
+        search_movie_response = json.loads(search_movie_data)
+
+        search_movie_results = None
+
+        if search_movie_response['results']:
+            search_movie_list = search_movie_response['results']
+            search_movie_results = process_results(search_movie_list)
+
+
+    return search_movie_results
+
 def process_results(movie_list):
     '''
     Function  that processes the movie result and transform them to a list of Objects

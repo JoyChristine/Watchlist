@@ -1,0 +1,28 @@
+h3{
+    margin-left: 3%;
+    /* font-size: 2vw; */
+}
+.navbar{
+    background-color:rgb(25, 24, 24);
+
+}
+
+/* display images  */
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    color: red;
+}
+/* make movi title black */
+.movie-card a{
+    color: black;
+}
+/* Search bar */
+.container .form-control{
+    border-radius: 2%;
+   
+}
+.container .btn{
+    margin-top:1%;
+}
